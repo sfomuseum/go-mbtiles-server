@@ -3,19 +3,36 @@ package tile
 import (
 	"fmt"
 	"github.com/tilezen/go-tilepacks/tilepack"
+	"github.com/aaronland/go-mimetypes"	
 	"regexp"
 	"strconv"
 )
 
+// TileParser is an interface for parsing URI paths in to *TileRequest instances.
 type TileParser interface {
+	// Parse takes a URI path as its input and returns a *TileRequest instance.
 	Parse(string) (*TileRequest, error)
 }
 
+// SimpleTileParse is an implementation of the TileParser interface. It uses a simple
+// positional regular expression to match tile requests and determine which to return
+// from a given MBTiles database:
+//
+//	`\/([^\/]+)\/(\d+)\/(\d+)\/(\d+)\.(\w+)$`
+//
+// Where:
+// $1 is the name of the (MBTiles database) layer to read data from
+// $2 is the Z value of the tile request
+// $3 is the X value of the tile request
+// $4 is the Y value of the tile request
+// $5 is the mime-type extension for the tile request. Fully-qualified content-type values
+// for file extensions are mapped using the aaronland/go-mimetypes package.
 type SimpleTileParser struct {
 	TileParser
 	re *regexp.Regexp
 }
 
+// Return a new SimpleTileParser instance.
 func NewSimpleTileParser() (TileParser, error) {
 
 	re, err := regexp.Compile(`\/([^\/]+)\/(\d+)\/(\d+)\/(\d+)\.(\w+)$`)
@@ -31,6 +48,7 @@ func NewSimpleTileParser() (TileParser, error) {
 	return p, nil
 }
 
+// Parse a URI path in to a *TileRequest.
 func (p *SimpleTileParser) Parse(path string) (*TileRequest, error) {
 
 	match := p.re.FindStringSubmatch(path)
@@ -40,8 +58,16 @@ func (p *SimpleTileParser) Parse(path string) (*TileRequest, error) {
 	}
 
 	layer := match[1]
-	// ext := match[5]
+	ext := match[5]
 
+	t := mimetypes.TypesByExtension(ext)
+
+	if len(t) == 0 {
+		return nil, fmt.Errorf("Unsupported extension '%s'", ext)
+	}
+	
+	content_type := t[0]
+	
 	z, _ := strconv.ParseUint(match[2], 10, 32)
 	x, _ := strconv.ParseUint(match[3], 10, 32)
 	y, _ := strconv.ParseUint(match[4], 10, 32)
@@ -55,7 +81,7 @@ func (p *SimpleTileParser) Parse(path string) (*TileRequest, error) {
 	tile_req := &TileRequest{
 		Tile:        tile,
 		Layer:       layer,
-		ContentType: "", // Fix me
+		ContentType: content_type,
 	}
 
 	return tile_req, nil

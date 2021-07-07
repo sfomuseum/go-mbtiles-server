@@ -3,12 +3,13 @@ package http
 import (
 	"github.com/sfomuseum/go-mbtiles-server/tile"
 	"github.com/tilezen/go-tilepacks/tilepack"
-	"github.com/aaronland/go-mimetypes"
 	"log"
 	gohttp "net/http"
-	"strings"
+	"strconv"
 )
 
+// MBTilesHandler will return a http.HandlerFunc handler for serving tile requests from 'catalog' using the
+// tile.NewSimpleTileParser parser.
 func MBTilesHandler(catalog map[string]tilepack.MbtilesReader) (gohttp.HandlerFunc, error) {
 
 	p, err := tile.NewSimpleTileParser()
@@ -20,21 +21,24 @@ func MBTilesHandler(catalog map[string]tilepack.MbtilesReader) (gohttp.HandlerFu
 	return MBTilesHandlerWithParser(catalog, p)
 }
 
+// MBTilesHandler will return a http.HandlerFunc handler for serving tile requests from 'catalog' using a
+// custom tile.TileParser instance.
 func MBTilesHandlerWithParser(catalog map[string]tilepack.MbtilesReader, p tile.TileParser) (gohttp.HandlerFunc, error) {
 
-	fn := func(w gohttp.ResponseWriter, r *gohttp.Request) {
+	fn := func(rsp gohttp.ResponseWriter, req *gohttp.Request) {
 
-		tile_req, err := p.Parse(r.URL.Path)
+		path := req.URL.Path
+		tile_req, err := p.Parse(path)
 
 		if err != nil {
-			gohttp.NotFound(w, r)
+			gohttp.NotFound(rsp, req)
 			return
 		}
 
 		reader, ok := catalog[tile_req.Layer]
 
 		if !ok {
-			gohttp.NotFound(w, r)
+			gohttp.NotFound(rsp, req)
 			return
 		}
 
@@ -42,30 +46,21 @@ func MBTilesHandlerWithParser(catalog map[string]tilepack.MbtilesReader, p tile.
 
 		if err != nil {
 			log.Printf("Error getting tile: %+v", err)
-			gohttp.NotFound(w, r)
+			gohttp.NotFound(rsp, req)
 			return
 		}
 
 		if result.Data == nil {
-			gohttp.NotFound(w, r)
+			gohttp.NotFound(rsp, req)
 			return
 		}
 
-		acceptEncoding := r.Header.Get("Accept-Encoding")
-
-		if strings.Contains(acceptEncoding, "gzip") {
-			w.Header().Set("Content-Encoding", "gzip")
-		} else {
-			log.Printf("Requester doesn't accept gzip but our mbtiles have gzip in them")
-		}
-
-		t := mimetypes.TypesByExtension(tile_req.ContentType)
-
-		if len(t) >= 1 {
-			w.Header().Set("Content-Type", t[0])
-		}
+		l := len(*result.Data)
+		str_l := strconv.Itoa(l)
 		
-		w.Write(*result.Data)
+		rsp.Header().Set("Content-Type", tile_req.ContentType)
+		rsp.Header().Set("Content-Length", str_l)
+		rsp.Write(*result.Data)
 	}
 
 	return fn, nil

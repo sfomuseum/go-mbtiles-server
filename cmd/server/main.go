@@ -3,7 +3,8 @@ package main
 import (
 	"context"
 	"flag"
-	"github.com/aaronland/go-http-server"	
+	"fmt"
+	"github.com/aaronland/go-http-server"
 	"github.com/sfomuseum/go-mbtiles-server/catalog"
 	"github.com/sfomuseum/go-mbtiles-server/http"
 	"log"
@@ -14,12 +15,19 @@ import (
 func main() {
 
 	server_uri := flag.String("server-uri", "http://localhost:8080", "A valid aaronland/go-http-server URI.")
-	root := flag.String("root", "", "...")
+	root := flag.String("root", "", "The path to a directory of MBTiles (SQLite) databases. Valid databases must have one of the following suffixes: .db, .sqlite, .sqlite3, .mbtiles")
+
+	flag.Usage = func() {
+		fmt.Fprintf(os.Stderr, "Usage:\n")
+		fmt.Fprintf(os.Stderr, "  %s [options]\n\n", os.Args[0])
+		fmt.Fprintf(os.Stderr, "Options:\n")
+		flag.PrintDefaults()
+	}
 	
 	flag.Parse()
 
 	ctx := context.Background()
-	
+
 	db_fs := os.DirFS(*root)
 
 	c, err := catalog.NewCatalogFromFS(db_fs)
@@ -43,9 +51,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to create new server, %v", err)
 	}
-	
+
 	log.Printf("Listening on %s\n", s.Address())
-	
+
 	err = s.ListenAndServe(ctx, mux)
 
 	if err != nil {
