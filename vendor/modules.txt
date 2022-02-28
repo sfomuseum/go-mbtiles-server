@@ -1,7 +1,7 @@
 # github.com/aaronland/go-http-server v0.0.7
 ## explicit
 github.com/aaronland/go-http-server
-# github.com/aaronland/go-mimetypes v0.0.1
+# github.com/aaronland/go-mimetypes v0.0.2
 ## explicit
 github.com/aaronland/go-mimetypes
 github.com/aaronland/go-mimetypes/lookup
@@ -71,7 +71,7 @@ github.com/aws/aws-sdk-go/service/sts/stsiface
 github.com/jmespath/go-jmespath
 # github.com/mattn/go-sqlite3 v1.14.8
 github.com/mattn/go-sqlite3
-# github.com/tilezen/go-tilepacks v0.0.0-20210602151652-0147f7fb6fd7 => github.com/sfomuseum/go-tilepacks v0.0.0-20210818170442-a65e38f5c453
+# github.com/tilezen/go-tilepacks v0.0.0-20210818174005-d960bc00ff89
 ## explicit
 github.com/tilezen/go-tilepacks/tilepack
 # github.com/whosonfirst/algnhsa v0.1.0
