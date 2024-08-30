@@ -23,7 +23,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Options:\n")
 		flag.PrintDefaults()
 	}
-	
+
 	flag.Parse()
 
 	ctx := context.Background()

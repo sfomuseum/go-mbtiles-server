@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"github.com/tilezen/go-tilepacks/tilepack"
 	"io/fs"
-	"path/filepath"
-	"strings"
 	"os"
+	"path/filepath"
 	"regexp"
+	"strings"
 )
 
 // MatchFunc is a custom function to signal whether a given path is a valid MBTiles database path or filename.
@@ -22,7 +22,7 @@ func NewCatalogFromFS(db_fs fs.FS) (map[string]tilepack.MbtilesReader, error) {
 	if err != nil {
 		return nil, err
 	}
-	
+
 	return NewCatalogFromFSWithRegexp(db_fs, re)
 }
 
@@ -32,7 +32,7 @@ func NewCatalogFromFSWithRegexp(db_fs fs.FS, re *regexp.Regexp) (map[string]tile
 
 	match_func := func(path string) (bool, error) {
 
-		if re.MatchString(path){
+		if re.MatchString(path) {
 			return true, nil
 		}
 
@@ -47,7 +47,7 @@ func NewCatalogFromFSWithRegexp(db_fs fs.FS, re *regexp.Regexp) (map[string]tile
 func NewCatalogFromFSWithMatchFunc(db_fs fs.FS, match_func MatchFunc) (map[string]tilepack.MbtilesReader, error) {
 
 	files := make([]string, 0)
-	
+
 	walk_fn := func(path string, d fs.DirEntry, err error) error {
 
 		if err != nil {
@@ -74,7 +74,7 @@ func NewCatalogFromFSWithMatchFunc(db_fs fs.FS, match_func MatchFunc) (map[strin
 	}
 
 	catalog := make(map[string]tilepack.MbtilesReader)
-	
+
 	for _, path := range files {
 
 		fname := filepath.Base(path)
@@ -83,21 +83,21 @@ func NewCatalogFromFSWithMatchFunc(db_fs fs.FS, match_func MatchFunc) (map[strin
 		layer := strings.Replace(fname, ext, "", -1)
 
 		// START OF things we probably shouldn't be doing
-		
+
 		var abs_path string
 
 		str_type := fmt.Sprintf("%T", db_fs)
-		
+
 		switch str_type {
 		case "os.dirFS":
-			root_fs := fmt.Sprintf("%s", db_fs)	// SEE THIS? It totally breaks the fs.FS contract
+			root_fs := fmt.Sprintf("%s", db_fs) // SEE THIS? It totally breaks the fs.FS contract
 			abs_path = filepath.Join(root_fs, path)
 		default:
 
 			// Create tmp files and io.Copy the data in to place
 			// Note the absence of any good way to clean up that tmp data
 			// yet...
-			
+
 			return nil, fmt.Errorf("Unsupport fs.FS type '%T'", db_fs)
 		}
 
@@ -112,7 +112,7 @@ func NewCatalogFromFSWithMatchFunc(db_fs fs.FS, match_func MatchFunc) (map[strin
 		}
 
 		// END OF things we probably shouldn't be doing
-		
+
 		r, err := tilepack.NewMbtilesReader(abs_path)
 
 		if err != nil {

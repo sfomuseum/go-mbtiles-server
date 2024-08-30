@@ -1,11 +1,12 @@
 package http
 
 import (
-	"github.com/sfomuseum/go-mbtiles-server/tile"
-	"github.com/tilezen/go-tilepacks/tilepack"
 	"log"
 	gohttp "net/http"
 	"strconv"
+
+	"github.com/sfomuseum/go-mbtiles-server/tile"
+	"github.com/tilezen/go-tilepacks/tilepack"
 )
 
 // MBTilesHandler will return a http.HandlerFunc handler for serving tile requests from 'catalog' using the
@@ -57,7 +58,7 @@ func MBTilesHandlerWithParser(catalog map[string]tilepack.MbtilesReader, p tile.
 
 		l := len(*result.Data)
 		str_l := strconv.Itoa(l)
-		
+
 		rsp.Header().Set("Content-Type", tile_req.ContentType)
 		rsp.Header().Set("Content-Length", str_l)
 		rsp.Write(*result.Data)
