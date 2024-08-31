@@ -1,21 +1,28 @@
-# github.com/aaronland/go-http-server v0.0.7
-## explicit
+# github.com/aaronland/go-http-server v1.4.1
+## explicit; go 1.22
 github.com/aaronland/go-http-server
 # github.com/aaronland/go-mimetypes v0.0.2
-## explicit
+## explicit; go 1.12
 github.com/aaronland/go-mimetypes
 github.com/aaronland/go-mimetypes/lookup
-# github.com/aaronland/go-roster v0.0.2
+# github.com/aaronland/go-roster v1.0.0
+## explicit; go 1.16
 github.com/aaronland/go-roster
-# github.com/aaronland/go-string v0.1.2
+# github.com/aaronland/go-string v1.0.0
+## explicit; go 1.16
 github.com/aaronland/go-string/dsn
-# github.com/aws/aws-lambda-go v1.10.0
+# github.com/akrylysov/algnhsa v1.1.0
+## explicit; go 1.18
+github.com/akrylysov/algnhsa
+# github.com/aws/aws-lambda-go v1.46.0
+## explicit; go 1.18
 github.com/aws/aws-lambda-go/events
 github.com/aws/aws-lambda-go/lambda
 github.com/aws/aws-lambda-go/lambda/handlertrace
 github.com/aws/aws-lambda-go/lambda/messages
 github.com/aws/aws-lambda-go/lambdacontext
-# github.com/aws/aws-sdk-go v1.40.24
+# github.com/aws/aws-sdk-go v1.44.65
+## explicit; go 1.11
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
 github.com/aws/aws-sdk-go/aws/awserr
@@ -68,11 +75,26 @@ github.com/aws/aws-sdk-go/service/sso/ssoiface
 github.com/aws/aws-sdk-go/service/sts
 github.com/aws/aws-sdk-go/service/sts/stsiface
 # github.com/jmespath/go-jmespath v0.4.0
+## explicit; go 1.14
 github.com/jmespath/go-jmespath
-# github.com/mattn/go-sqlite3 v1.14.8
+# github.com/mattn/go-sqlite3 v1.14.14
+## explicit; go 1.12
 github.com/mattn/go-sqlite3
-# github.com/tilezen/go-tilepacks v0.0.0-20210818174005-d960bc00ff89
-## explicit
+# github.com/paulmach/orb v0.11.1
+## explicit; go 1.15
+github.com/paulmach/orb
+github.com/paulmach/orb/geojson
+github.com/paulmach/orb/internal/mercator
+github.com/paulmach/orb/maptile
+# github.com/tilezen/go-tilepacks v0.0.0-20230902185537-9a48755ab988
+## explicit; go 1.12
 github.com/tilezen/go-tilepacks/tilepack
-# github.com/whosonfirst/algnhsa v0.1.0
-github.com/whosonfirst/algnhsa
+# go.mongodb.org/mongo-driver v1.11.4
+## explicit; go 1.13
+go.mongodb.org/mongo-driver/bson
+go.mongodb.org/mongo-driver/bson/bsoncodec
+go.mongodb.org/mongo-driver/bson/bsonoptions
+go.mongodb.org/mongo-driver/bson/bsonrw
+go.mongodb.org/mongo-driver/bson/bsontype
+go.mongodb.org/mongo-driver/bson/primitive
+go.mongodb.org/mongo-driver/x/bsonx/bsoncore
