@@ -21,10 +21,11 @@ github.com/aws/aws-lambda-go/lambda
 github.com/aws/aws-lambda-go/lambda/handlertrace
 github.com/aws/aws-lambda-go/lambda/messages
 github.com/aws/aws-lambda-go/lambdacontext
-# github.com/aws/aws-sdk-go v1.44.65
-## explicit; go 1.11
+# github.com/aws/aws-sdk-go v1.55.5
+## explicit; go 1.19
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
+github.com/aws/aws-sdk-go/aws/auth/bearer
 github.com/aws/aws-sdk-go/aws/awserr
 github.com/aws/aws-sdk-go/aws/awsutil
 github.com/aws/aws-sdk-go/aws/client
@@ -72,13 +73,14 @@ github.com/aws/aws-sdk-go/service/s3/s3iface
 github.com/aws/aws-sdk-go/service/s3/s3manager
 github.com/aws/aws-sdk-go/service/sso
 github.com/aws/aws-sdk-go/service/sso/ssoiface
+github.com/aws/aws-sdk-go/service/ssooidc
 github.com/aws/aws-sdk-go/service/sts
 github.com/aws/aws-sdk-go/service/sts/stsiface
 # github.com/jmespath/go-jmespath v0.4.0
 ## explicit; go 1.14
 github.com/jmespath/go-jmespath
-# github.com/mattn/go-sqlite3 v1.14.14
-## explicit; go 1.12
+# github.com/mattn/go-sqlite3 v1.14.23
+## explicit; go 1.19
 github.com/mattn/go-sqlite3
 # github.com/paulmach/orb v0.11.1
 ## explicit; go 1.15
@@ -86,8 +88,8 @@ github.com/paulmach/orb
 github.com/paulmach/orb/geojson
 github.com/paulmach/orb/internal/mercator
 github.com/paulmach/orb/maptile
-# github.com/tilezen/go-tilepacks v0.0.0-20230902185537-9a48755ab988
-## explicit; go 1.12
+# github.com/tilezen/go-tilepacks v0.0.0-20240928014516-f75e8450bbe0
+## explicit; go 1.23
 github.com/tilezen/go-tilepacks/tilepack
 # go.mongodb.org/mongo-driver v1.11.4
 ## explicit; go 1.13
