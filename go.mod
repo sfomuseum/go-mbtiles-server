@@ -4,7 +4,7 @@ go 1.25.0
 
 require (
 	github.com/aaronland/go-http/v3 v3.2.0
-	github.com/aaronland/go-mimetypes v0.0.2
+	github.com/gabriel-vasile/mimetype v1.4.11
 	github.com/paulmach/orb v0.12.0
 	github.com/tilezen/go-tilepacks v1.0.0-pre1
 )
