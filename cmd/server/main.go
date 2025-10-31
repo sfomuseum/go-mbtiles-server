@@ -4,12 +4,13 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"github.com/aaronland/go-http-server"
-	"github.com/sfomuseum/go-mbtiles-server/catalog"
-	"github.com/sfomuseum/go-mbtiles-server/http"
 	"log"
 	gohttp "net/http"
 	"os"
+
+	"github.com/aaronland/go-http/v3/server"
+	"github.com/sfomuseum/go-mbtiles-server/catalog"
+	"github.com/sfomuseum/go-mbtiles-server/http"	
 )
 
 func main() {

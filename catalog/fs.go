@@ -2,12 +2,13 @@ package catalog
 
 import (
 	"fmt"
-	"github.com/tilezen/go-tilepacks/tilepack"
 	"io/fs"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
+
+	"github.com/tilezen/go-tilepacks/tilepack"	
 )
 
 // MatchFunc is a custom function to signal whether a given path is a valid MBTiles database path or filename.

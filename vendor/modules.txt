@@ -1,6 +1,6 @@
-# github.com/aaronland/go-http-server v1.4.1
-## explicit; go 1.22
-github.com/aaronland/go-http-server
+# github.com/aaronland/go-http/v3 v3.2.0
+## explicit; go 1.25.0
+github.com/aaronland/go-http/v3/server
 # github.com/aaronland/go-mimetypes v0.0.2
 ## explicit; go 1.12
 github.com/aaronland/go-mimetypes
@@ -14,14 +14,14 @@ github.com/aaronland/go-string/dsn
 # github.com/akrylysov/algnhsa v1.1.0
 ## explicit; go 1.18
 github.com/akrylysov/algnhsa
-# github.com/aws/aws-lambda-go v1.46.0
+# github.com/aws/aws-lambda-go v1.49.0
 ## explicit; go 1.18
 github.com/aws/aws-lambda-go/events
 github.com/aws/aws-lambda-go/lambda
 github.com/aws/aws-lambda-go/lambda/handlertrace
 github.com/aws/aws-lambda-go/lambda/messages
 github.com/aws/aws-lambda-go/lambdacontext
-# github.com/aws/aws-sdk-go v1.55.5
+# github.com/aws/aws-sdk-go v1.55.7
 ## explicit; go 1.19
 github.com/aws/aws-sdk-go/aws
 github.com/aws/aws-sdk-go/aws/arn
@@ -82,13 +82,13 @@ github.com/jmespath/go-jmespath
 # github.com/mattn/go-sqlite3 v1.14.23
 ## explicit; go 1.19
 github.com/mattn/go-sqlite3
-# github.com/paulmach/orb v0.11.1
+# github.com/paulmach/orb v0.12.0
 ## explicit; go 1.15
 github.com/paulmach/orb
 github.com/paulmach/orb/geojson
 github.com/paulmach/orb/internal/mercator
 github.com/paulmach/orb/maptile
-# github.com/tilezen/go-tilepacks v0.0.0-20240928014516-f75e8450bbe0
+# github.com/tilezen/go-tilepacks v1.0.0-pre1
 ## explicit; go 1.23
 github.com/tilezen/go-tilepacks/tilepack
 # go.mongodb.org/mongo-driver v1.11.4
